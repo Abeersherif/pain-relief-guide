@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pain Relief & Medication: Your Safe Use Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #5C6BC0 0%, #26A69A 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #5C6BC0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #5C6BC0;
+        }
+
+        /* Section */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        /* Guidelines Grid */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .guideline-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-top: 4px solid #5C6BC0;
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .guideline-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #5C6BC0;
+        }
+
+        .guideline-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Dosage Calculator Section */
+        .calculator-section {
+            background: #f8f9fa;
+            padding: 5rem 2rem;
+        }
+
+        .calculator-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #5C6BC0;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #5C6BC0 0%, #26A69A 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(92, 107, 192, 0.3);
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .result-box h4 {
+            color: #5C6BC0;
+            margin-bottom: 1rem;
+        }
+
+        /* Chat Section */
+        .chat-section {
+            background: linear-gradient(135deg, #5C6BC0 0%, #26A69A 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .chat-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chat-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: #26A69A;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pain Relief & Medication:<br>Your Safe Use Guide</h1>
+            <p>Navigating the world of pain relief medications can be complex. Our comprehensive guide is designed to
+                empower you with the knowledge needed for safe and effective pain management.</p>
+            <div class="cta-buttons">
+                <a href="#guidelines" class="btn btn-primary">Explore Guidelines</a>
+                <a href="#pharmacist" class="btn btn-secondary">Ask a Pharmacist</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guidelines Section -->
+    <section class="section" id="guidelines">
+        <h2 class="section-title">Safe Medication Guidelines</h2>
+        <p class="section-subtitle">Essential information for responsible painkiller use</p>
+
+        <div class="guidelines-grid">
+            <div class="guideline-card">
+                <h3>📖 Always Read Labels</h3>
+                <p>Medication labels contain critical safety information including dosage instructions, warnings, and
+                    potential side effects. Reading them every time can prevent serious health complications.</p>
+            </div>
+
+            <div class="guideline-card">
+                <h3>⚖️ Know Your Dose</h3>
+                <p>Every painkiller has a maximum safe daily dose. Exceeding this limit can cause liver damage, kidney
+                    problems, or other serious health issues. Never assume "more is better."</p>
+            </div>
+
+            <div class="guideline-card">
+                <h3>⏰ Timing Matters</h3>
+                <p>Follow the recommended time intervals between doses. Taking medication too frequently can lead to
+                    overdose, even if each individual dose seems small.</p>
+            </div>
+
+            <div class="guideline-card">
+                <h3>🚫 Avoid Mixing</h3>
+                <p>Many over-the-counter medications contain the same active ingredients. Taking multiple products
+                    simultaneously can result in accidental overdose.</p>
+            </div>
+
+            <div class="guideline-card">
+                <h3>💊 OTC ≠ Risk-Free</h3>
+                <p>Over-the-counter availability doesn't mean completely safe. All medications carry risks when misused.
+                    Treat them with the same caution as prescription drugs.</p>
+            </div>
+
+            <div class="guideline-card">
+                <h3>👨‍⚕️ Consult Professionals</h3>
+                <p>When in doubt, ask a pharmacist or doctor. They can provide personalized advice based on your health
+                    history, current medications, and specific needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dosage Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="section" style="padding: 0;">
+            <h2 class="section-title" style="text-align: center;">Dosage Calculator</h2>
+            <p class="section-subtitle" style="text-align: center;">Calculate safe dosage based on your weight and
+                medication type</p>
+
+            <div class="calculator-box">
+                <form id="dosageForm">
+                    <div class="form-group">
+                        <label for="medication">Select Medication</label>
+                        <select id="medication" required>
+                            <option value="">Choose a medication...</option>
+                            <option value="paracetamol">Paracetamol (Acetaminophen)</option>
+                            <option value="ibuprofen">Ibuprofen</option>
+                            <option value="aspirin">Aspirin</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Your Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="Enter your weight" min="1" required>
+                    </div>
+
+                    <button type="submit" class="calculate-btn">Calculate Safe Dosage</button>
+                </form>
+
+                <div class="result-box" id="resultBox">
+                    <h4>Recommended Dosage:</h4>
+                    <p id="resultText"></p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                        <strong>Important:</strong> This is a general guideline. Always consult a healthcare
+                        professional for personalized advice.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ask Pharmacist Section -->
+    <section class="chat-section" id="pharmacist">
+        <h2>Need Personalized Advice?</h2>
+        <p>Our pharmacists are here to answer your questions about safe medication use</p>
+        <a href="mailto:[email protected]" class="btn btn-primary">Start Chat with Pharmacist</a>
+        <p style="margin-top: 2rem; font-size: 1rem;">
+            Or email us at: <strong>[email protected]</strong>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <p>Pain Relief & Medication Safety Guide</p>
+        <p>Pharmacy Student | December 2025</p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+            Made with care for your health
+        </p>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Dosage Calculator
+        document.getElementById('dosageForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const medication = document.getElementById('medication').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const resultBox = document.getElementById('resultBox');
+            const resultText = document.getElementById('resultText');
+
+            let dosage = '';
+            let maxDaily = '';
+
+            if (medication === 'paracetamol') {
+                const singleDose = Math.min(1000, weight * 15);
+                dosage = `${Math.round(singleDose)}mg every 4-6 hours`;
+                maxDaily = '4000mg per day (4g)';
+            } else if (medication === 'ibuprofen') {
+                const singleDose = Math.min(400, weight * 5);
+                dosage = `${Math.round(singleDose)}mg every 4-6 hours`;
+                maxDaily = '1200mg per day for OTC use';
+            } else if (medication === 'aspirin') {
+                dosage = '300-600mg every 4-6 hours';
+                maxDaily = '4000mg per day';
+            }
+
+            resultText.innerHTML = `
+                <strong>Single Dose:</strong> ${dosage}<br>
+                <strong>Maximum Daily Dose:</strong> ${maxDaily}<br><br>
+                <span style="color: #e74c3c;">⚠️ Do not exceed the maximum daily dose</span>
+            `;
+
+            resultBox.classList.add('show');
+        });
+    </script>
+</body>
+
+</html>
